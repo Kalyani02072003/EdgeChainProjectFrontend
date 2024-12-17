@@ -19,7 +19,7 @@ This is a **Recipe Generator and Meal Planning** web application designed to hel
 ## How It Works
 
 1. **Backend (Server-side)**:
-   - The backend is built using **Node.js** and **Express.js**.
+   - The server is built using **Typescript**.
    - The backend communicates with **OpenRouter API** using the Mistral model to generate responses for recipe generation and meal planning.
    - It also uses **Hugging Face API** for translating text to the desired language.
 
