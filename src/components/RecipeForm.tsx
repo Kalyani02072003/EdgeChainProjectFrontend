@@ -170,6 +170,7 @@ const RecipeForm: React.FC = () => {
     setError(null); 
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate`, { input, language }, { withCredentials: true });
+      
       setRecipe(response.data.recipe);
       setIngredients(response.data.ingredients); 
 
