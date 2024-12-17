@@ -169,11 +169,11 @@ const RecipeForm: React.FC = () => {
     setLoading(true);
     setError(null); 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate`, { input, language });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate`, { input, language }, { withCredentials: true });
       setRecipe(response.data.recipe);
       setIngredients(response.data.ingredients); 
 
-      const nutritionResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/nutrition`, { input });
+      const nutritionResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/nutrition`, { input }, { withCredentials: true });
       setNutritionalValues(nutritionResponse.data.nutritionalValues); // Set nutritional values
       
       if (language !== 'en') {
@@ -193,7 +193,7 @@ const RecipeForm: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/mealplan`, { input, language });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/mealplan`, { input, language }, { withCredentials: true });
       setMealPlan(response.data.mealPlan);
     } catch (error) {
       console.error('Error generating meal plan:', error);
