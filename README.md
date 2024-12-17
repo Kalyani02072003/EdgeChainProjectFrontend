@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Recipe Generator App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a **Recipe Generator and Meal Planning** web application designed to help users generate customized recipes, meal plans, and nutritional information. The app leverages the power of **OpenRouter API** with **Mistral model** and the **Hugging Face model** for natural language processing tasks. It allows users to create personalized meal plans for a week, generate recipe suggestions, and even translate the content into different languages.
 
-In the project directory, you can run:
+### Features
+- **Generate Recipes**: Based on user input, the app generates unique recipe ideas using AI.
+- **Meal Planning**: The app can generate a meal plan for an entire week, tailored to the user's dietary needs.
+- **Nutritional Information**: Users can get nutritional details (calories, protein, carbs, etc.) for any ingredient or meal.
+- **Language Translation**: The app can translate recipe instructions and meal plans into multiple languages.
 
-### `npm start`
+## Key Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **OpenRouter API**: Used for interacting with the Mistral model for text generation tasks (like recipe and meal plan generation).
+- **Mistral Model**: A generative AI model powered by OpenRouter, used to generate creative content such as recipes and meal plans.
+- **Hugging Face Model**: This model is used for translating text to the desired language, powered by the Hugging Face API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How It Works
 
-### `npm test`
+1. **Backend (Server-side)**:
+   - The backend is built using **Node.js** and **Express.js**.
+   - The backend communicates with **OpenRouter API** using the Mistral model to generate responses for recipe generation and meal planning.
+   - It also uses **Hugging Face API** for translating text to the desired language.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Frontend (Client-side)**:
+   - The frontend is a **React.js** application hosted on **Vercel**.
+   - The app allows users to input their dietary preferences, and then it communicates with the backend to generate recipes, meal plans, and nutritional information.
+   - It uses **Axios** to make HTTP requests to the backend, which is deployed on **Vercel**.
 
-### `npm run build`
+3. **Endpoints**:
+   - **POST /generate**: Accepts an ingredient or dish name and generates a recipe using the Mistral model.
+   - **POST /nutrition**: Accepts an ingredient or dish name and returns nutritional information.
+   - **POST /mealplan**: Accepts a dietary preference (e.g., vegetarian, keto) and generates a weekly meal plan. This can also be translated into the desired language.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **CORS**:
+   - The application is hosted on a separate domain (frontend: `https://frontend-omega-six-16.vercel.app`), and the backend is configured to allow **CORS** from this domain to ensure that API requests are allowed.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository_url>
+   cd <project_directory>
 
-### `npm run eject`
+### Install Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For backend:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+For frontend (React):
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+### Set Up Environment Variables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create a `.env` file in the backend project and set your OpenRouter API key:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```makefile
+OPENROUTER_API_KEY=your_api_key_here
+```
 
-### Code Splitting
+### Start the Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+### Start the Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm start
+```
 
-### Making a Progressive Web App
+Open your browser and visit `http://localhost:3000` to interact with the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Deployment
 
-### Advanced Configuration
+This project is deployed using **Vercel**. The frontend and backend are both deployed separately, with the backend providing the API endpoints and the frontend making API calls to these endpoints.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Frontend URL**: [https://frontend-omega-six-16.vercel.app/](https://frontend-omega-six-16.vercel.app/)
+- **Backend URL**: [https://backend-three-mocha.vercel.app/](https://backend-three-mocha.vercel.app/)
 
-### Deployment
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### OpenRouter (Mistral Model)
 
-### `npm run build` fails to minify
+The app uses the **Mistral model** provided by **OpenRouter** to generate recipe suggestions and meal plans. Mistral is a powerful generative language model that understands natural language queries and can provide coherent responses for tasks like:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Recipe generation based on ingredients or cuisine preferences.
+- Meal planning for multiple days with varied recipes.
+
+#### Example API Request (for generating a recipe):
+
+```json
+{
+  "input": "Chicken Alfredo",
+  "language": "en"
+}
+```
+
+### Hugging Face (Translation)
+
+The app uses the **Hugging Face** model to handle text translations for users who want recipe instructions or meal plans in different languages.
+
+#### Example Translation Request:
+
+```json
+{
+  "text": "Generate a simple meal plan for chicken for 7 days",
+  "targetLanguage": "es"
+}
+```
+
+## Troubleshooting
+
+- **CORS Errors**: Ensure that both the frontend and backend domains are correctly set in the CORS configuration.
+- **Timeout Issues**: If requests take too long to process, try optimizing backend functions or consider using serverless functions with longer timeouts.
